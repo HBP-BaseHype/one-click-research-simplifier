@@ -10,6 +10,7 @@ import ProcessButton from "@/components/process_button";
 import ResultDisplay from "@/components/result_display";
 import TextInput from "@/components/text_input";
 import UrlInput from "@/components/url_input";
+import { ProcessingService } from "@/services/processing_service";
 import { ActionType, TabType } from "@/types";
 import { useState } from "react";
 
@@ -27,7 +28,7 @@ export default function Home() {
     setUploadedFile(file);
     if (file) {
       try {
-        const content = ""; //await ProcessingService.readFileContent(file);
+        const content = await ProcessingService.readFileContent(file);
         setInputText(content);
       } catch (error) {
         console.error("Error reading file:", error);
@@ -47,14 +48,14 @@ export default function Home() {
       let contentToProcess = inputText;
 
       if (activeTab === "url" && inputUrl) {
-        contentToProcess = ""; //await ProcessingService.fetchUrlContent(inputUrl);
+        contentToProcess = await ProcessingService.fetchUrlContent(inputUrl);
       }
 
-      const result = ""; /*await ProcessingService.processContent(
+      const result = await ProcessingService.processContent(
         contentToProcess,
         selectedAction,
         targetLanguage
-      );*/
+      );
 
       setOutputText(result);
     } catch (error) {
