@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "One-Click Research Simplifier",
-  description: "A web application that makes research papers, news articles, and policy documents easier to understand using Chrome's built-in AI APIs.",
+  title: "Research Simplifier | One-Click Research Assistant",
+  description: "Transform complex research into simple, understandable content with our AI-powered research assistant.",
+  keywords: ['research', 'simplify', 'ai', 'assistant', 'summarize', 'translate'],
 };
 
 export default function RootLayout({
@@ -13,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className={`${inter.className} antialiased`}>
         {children}
       </body>
     </html>
